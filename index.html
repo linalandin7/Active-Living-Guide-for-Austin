@@ -1,0 +1,3493 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Explore Austin-area parks, trails, pools, recreation centers, nature preserves, sports facilities, and dog parks."
+    />
+    <meta name="theme-color" content="#f47b35" />
+    <title>AMSC Activity Guide</title>
+    <style>
+:root {
+  --ink: #171717;
+  --muted: #67645f;
+  --paper: #fffefb;
+  --cream: #f7f2e9;
+  --orange: #f47b35;
+  --orange-dark: #bd4e18;
+  --green: #267552;
+  --green-light: #d9eedc;
+  --blue: #3466c2;
+  --blue-light: #dce9ff;
+  --purple: #7250a5;
+  --purple-light: #eadff7;
+  --yellow: #f4c849;
+  --line: #ded9d0;
+  --shadow: 0 18px 50px rgb(37 30 20 / 10%);
+  --font: "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: var(--font);
+  line-height: 1.5;
+}
+button, input, select { font: inherit; }
+button, summary, a { -webkit-tap-highlight-color: transparent; }
+button { color: inherit; }
+a { color: inherit; }
+
+.announcement {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px 24px;
+  color: white;
+  background: var(--ink);
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 82px;
+  padding: 14px clamp(24px, 5vw, 80px);
+  background: rgb(255 254 251 / 94%);
+  border-bottom: 1px solid rgb(23 23 23 / 10%);
+  backdrop-filter: blur(16px);
+}
+
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.brand-mark {
+  display: inline-grid;
+  place-items: center;
+  min-width: 58px;
+  min-height: 50px;
+  padding: 8px;
+  color: white;
+  background: var(--orange);
+  border-radius: 9px 22px 9px 22px;
+  font-size: .78rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+.brand-copy { display: flex; flex-direction: column; line-height: 1.15; }
+.brand-copy strong { font-size: 1.02rem; letter-spacing: -.02em; }
+.brand-copy small { margin-top: 4px; color: var(--muted); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; }
+
+.main-nav { display: flex; align-items: center; gap: clamp(14px, 2.2vw, 32px); }
+.main-nav > a, .nav-dropdown > summary {
+  position: relative;
+  color: #353330;
+  font-size: .88rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  list-style: none;
+}
+.nav-dropdown > summary::-webkit-details-marker { display: none; }
+.nav-dropdown > summary::after { content: "⌄"; margin-left: 5px; color: var(--orange-dark); }
+.main-nav > a::after {
+  position: absolute;
+  right: 0;
+  bottom: -8px;
+  left: 0;
+  height: 2px;
+  background: var(--orange);
+  content: "";
+  transform: scaleX(0);
+  transition: transform .2s ease;
+}
+.main-nav > a:hover::after, .main-nav > a:focus-visible::after { transform: scaleX(1); }
+.nav-dropdown { position: relative; }
+.nav-dropdown-panel {
+  position: absolute;
+  top: 34px;
+  left: -18px;
+  width: 240px;
+  padding: 12px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+.nav-dropdown-panel button {
+  display: flex;
+  width: 100%;
+  padding: 10px 12px;
+  background: transparent;
+  border: 0;
+  border-radius: 10px;
+  text-align: left;
+  cursor: pointer;
+}
+.nav-dropdown-panel button:hover { background: var(--cream); }
+.nav-coming-soon { display: grid; gap: 4px; }
+.nav-coming-soon strong { font-size: .88rem; }
+.nav-coming-soon span { color: var(--muted); font-size: .78rem; }
+
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
+  min-height: 640px;
+  overflow: hidden;
+  background: var(--cream);
+}
+.hero::before {
+  position: absolute;
+  top: -180px;
+  left: -160px;
+  width: 420px;
+  height: 420px;
+  background: var(--yellow);
+  border-radius: 50%;
+  content: "";
+  opacity: .4;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  align-self: center;
+  padding: 70px clamp(30px, 6vw, 100px);
+}
+.eyebrow {
+  margin: 0 0 12px;
+  font-size: .76rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.hero h1 {
+  max-width: 760px;
+  margin: 0;
+  font-size: clamp(3.5rem, 6.5vw, 6.6rem);
+  font-weight: 800;
+  letter-spacing: -.075em;
+  line-height: .91;
+}
+.hero-intro { max-width: 650px; margin: 28px 0 32px; color: #4f4c47; font-size: 1.08rem; }
+
+.search-panel {
+  position: relative;
+  z-index: 3;
+  max-width: 790px;
+  padding: 24px;
+  background: white;
+  border: 1px solid rgb(23 23 23 / 12%);
+  border-radius: 22px;
+  box-shadow: 0 20px 60px rgb(55 43 24 / 14%);
+}
+.field { display: grid; gap: 8px; }
+.field > span:first-child, .filter-bar label > span {
+  color: #55514b;
+  font-size: .69rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.input-shell { display: flex; align-items: center; gap: 10px; }
+.input-icon { color: var(--orange-dark); font-size: 1.5rem; line-height: 1; }
+.input-shell input {
+  width: 100%;
+  padding: 10px 0;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  color: var(--ink);
+}
+.input-shell input::placeholder { color: #928d84; }
+.keyword-field { padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.keyword-field input { font-size: 1.12rem; }
+.location-row { display: grid; grid-template-columns: minmax(240px, 1fr) 125px auto; gap: 14px; align-items: end; margin-top: 16px; }
+.location-field .input-shell, .radius-field select {
+  min-height: 48px;
+  padding: 0 14px;
+  background: #f8f5ef;
+  border: 1px solid #e4dfd6;
+  border-radius: 12px;
+}
+.radius-field select { width: 100%; color: var(--ink); }
+.primary-button, .outline-button, .light-button, .show-more {
+  border-radius: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.primary-button { padding: 14px 20px; color: white; background: var(--ink); border: 1px solid var(--ink); }
+.primary-button:hover, .outline-button:hover, .light-button:hover, .show-more:hover { transform: translateY(-2px); }
+.find-button { min-height: 48px; white-space: nowrap; }
+.location-tools { display: flex; gap: 14px; align-items: center; min-height: 24px; margin-top: 10px; }
+.text-button { padding: 0; color: var(--blue); background: transparent; border: 0; font-size: .8rem; font-weight: 800; cursor: pointer; }
+#location-status { color: var(--muted); font-size: .76rem; }
+
+.hero-visual { position: relative; min-height: 640px; padding: 42px 42px 42px 0; }
+.hero-photo {
+  width: 100%;
+  height: 100%;
+  min-height: 540px;
+  background:
+    linear-gradient(180deg, transparent 52%, rgb(18 37 25 / 36%)),
+    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=82") center/cover;
+  border-radius: 180px 0 0 24px;
+}
+.hero-stat {
+  position: absolute;
+  right: 28px;
+  bottom: 78px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 22px;
+  color: white;
+  background: var(--blue);
+  border-radius: 16px 16px 2px 16px;
+  box-shadow: var(--shadow);
+}
+.hero-stat strong { font-size: 2rem; line-height: 1; }
+.hero-stat span { max-width: 80px; font-size: .74rem; font-weight: 800; line-height: 1.2; text-transform: uppercase; }
+.hero-sticker {
+  position: absolute;
+  top: 70px;
+  left: -34px;
+  display: grid;
+  place-items: center;
+  width: 122px;
+  height: 122px;
+  padding: 18px;
+  color: white;
+  background: var(--green);
+  border: 6px solid var(--cream);
+  border-radius: 50%;
+  font-size: .92rem;
+  font-weight: 900;
+  line-height: 1.1;
+  text-align: center;
+  transform: rotate(-9deg);
+}
+
+.category-strip { display: grid; grid-template-columns: repeat(3, 1fr); }
+.category-tile {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 18px;
+  align-items: center;
+  min-height: 130px;
+  padding: 24px clamp(24px, 4vw, 64px);
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+}
+.category-tile > span:nth-child(2) { display: grid; }
+.category-tile strong { font-size: 1.18rem; }
+.category-tile small { margin-top: 3px; opacity: .76; }
+.category-icon { font-size: 2.1rem; }
+.facility-tile { color: white; background: var(--orange); }
+.program-tile { color: white; background: var(--green); }
+.event-tile { color: white; background: var(--purple); }
+
+.section-shell { max-width: 1500px; margin: 0 auto; padding: 90px clamp(24px, 5vw, 80px); }
+.section-heading { display: flex; justify-content: space-between; gap: 30px; align-items: end; margin-bottom: 34px; }
+.section-heading h2, .calendar-section h2 { margin: 0; font-size: clamp(2.2rem, 4vw, 4.2rem); letter-spacing: -.06em; line-height: 1; }
+.section-subtitle { max-width: 640px; margin: 16px 0 0; color: var(--muted); }
+.orange-text { color: var(--orange-dark); }
+.blue-text { color: var(--blue); }
+.green-text { color: var(--green); }
+.purple-text { color: var(--purple); }
+.outline-button { padding: 12px 18px; background: transparent; border: 1px solid var(--ink); }
+
+.today-section { padding-bottom: 40px; }
+.today-card {
+  display: grid;
+  grid-template-columns: minmax(320px, .85fr) 1.15fr;
+  min-height: 390px;
+  overflow: hidden;
+  background: var(--ink);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+}
+.today-image { min-height: 390px; background-position: center; background-size: cover; }
+.today-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(32px, 5vw, 72px); color: white; }
+.type-badge { width: fit-content; padding: 7px 10px; color: var(--ink); background: var(--yellow); border-radius: 999px; font-size: .68rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+.today-copy h3 { margin: 18px 0 12px; font-size: clamp(2rem, 3.7vw, 4.5rem); letter-spacing: -.055em; line-height: .95; }
+.today-copy p { max-width: 590px; margin: 0 0 24px; color: #dedbd6; }
+.today-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.light-button { padding: 12px 18px; color: var(--ink); background: white; border: 1px solid white; }
+.today-actions .text-link { align-self: center; color: white; font-size: .85rem; font-weight: 800; }
+
+.explore-section { padding-top: 80px; }
+.explore-heading { align-items: center; }
+.results-count { margin: 0; padding: 9px 14px; background: var(--blue-light); border-radius: 999px; color: #214b91; font-size: .8rem; font-weight: 800; }
+.filter-bar {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(150px, 1fr)) auto;
+  gap: 12px;
+  padding: 18px;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+.filter-bar label { display: grid; gap: 6px; }
+.filter-bar select {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 12px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--ink);
+}
+.clear-button { align-self: end; min-height: 46px; padding: 0 16px; background: transparent; border: 1px solid #aaa49a; border-radius: 10px; font-size: .8rem; font-weight: 800; cursor: pointer; }
+.active-filters { display: flex; flex-wrap: wrap; gap: 8px; min-height: 28px; margin: 14px 0; }
+.filter-chip { padding: 6px 10px; color: #3a3732; background: white; border: 1px solid var(--line); border-radius: 999px; font-size: .72rem; font-weight: 700; }
+
+.results-layout { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 28px; align-items: start; }
+.facility-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.facility-card {
+  overflow: hidden;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 8px 22px rgb(37 30 20 / 5%);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.facility-card:hover { transform: translateY(-4px); box-shadow: 0 18px 34px rgb(37 30 20 / 12%); }
+.card-image { position: relative; height: 176px; background-color: var(--green-light); background-position: center; background-size: cover; }
+.card-image::after { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgb(0 0 0 / 35%)); content: ""; }
+.card-type { position: absolute; z-index: 2; bottom: 12px; left: 12px; padding: 6px 9px; color: white; background: rgb(23 23 23 / 82%); border-radius: 999px; font-size: .63rem; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; }
+.card-distance { position: absolute; z-index: 2; top: 12px; right: 12px; padding: 6px 9px; color: #1c3526; background: rgb(255 255 255 / 92%); border-radius: 999px; font-size: .66rem; font-weight: 800; }
+.card-body { padding: 18px; }
+.card-body h3 { min-height: 48px; margin: 0 0 8px; font-size: 1.04rem; line-height: 1.24; }
+.card-address { min-height: 41px; margin: 0 0 14px; color: var(--muted); font-size: .78rem; }
+.card-meta { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 16px; }
+.meta-pill { padding: 5px 8px; background: var(--cream); border-radius: 7px; color: #55504a; font-size: .67rem; font-weight: 700; }
+.card-notice { margin: -4px 0 14px; padding: 8px 10px; color: #7b2e14; background: #ffebe1; border-radius: 8px; font-size: .7rem; font-weight: 800; }
+.facts-button { width: 100%; padding: 10px 12px; color: var(--ink); background: white; border: 1px solid var(--ink); border-radius: 9px; font-size: .78rem; font-weight: 900; cursor: pointer; }
+.show-more { display: block; min-width: 210px; margin: 28px auto 0; padding: 13px 20px; background: white; border: 1px solid var(--ink); }
+.empty-state { padding: 80px 24px; text-align: center; background: var(--cream); border-radius: 20px; }
+.empty-state > span { font-size: 3rem; }
+.empty-state h3 { margin-bottom: 6px; }
+.empty-state p { color: var(--muted); }
+
+.map-panel { position: sticky; top: 110px; padding: 20px; background: #edf5ee; border: 1px solid #cadfce; border-radius: 20px; }
+.map-heading { display: flex; justify-content: space-between; gap: 12px; align-items: start; }
+.map-heading h3 { margin: 0; font-size: 1.45rem; letter-spacing: -.04em; }
+.coming-pill { padding: 5px 8px; color: white; background: var(--green); border-radius: 999px; font-size: .6rem; font-weight: 900; text-transform: uppercase; }
+.map-canvas {
+  position: relative;
+  height: 350px;
+  margin: 18px 0;
+  overflow: hidden;
+  background-color: #dfeadc;
+  background-image:
+    linear-gradient(34deg, transparent 47%, rgb(255 255 255 / 75%) 48% 51%, transparent 52%),
+    linear-gradient(112deg, transparent 47%, rgb(255 255 255 / 65%) 48% 51%, transparent 52%),
+    linear-gradient(rgb(49 105 74 / 9%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(49 105 74 / 9%) 1px, transparent 1px);
+  background-size: 130px 130px, 160px 160px, 36px 36px, 36px 36px;
+  border: 1px solid #c7d9c9;
+  border-radius: 14px;
+}
+.map-dot {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  background: var(--orange);
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgb(0 0 0 / 24%);
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+}
+.map-dot:nth-child(3n) { background: var(--blue); }
+.map-dot:nth-child(4n) { background: var(--purple); }
+.map-panel > p { margin: 0; color: #4e6555; font-size: .75rem; }
+
+.calendar-section {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 34px;
+  align-items: center;
+  max-width: 1400px;
+  margin: 30px auto 70px;
+  padding: 46px clamp(28px, 5vw, 70px);
+  color: white;
+  background: var(--purple);
+  border-radius: 28px;
+}
+.calendar-section p:not(.eyebrow) { max-width: 720px; margin-bottom: 0; color: #e7def2; }
+.calendar-art { display: grid; place-items: center; width: 110px; height: 110px; color: var(--purple); background: white; border-radius: 18px; box-shadow: 10px 10px 0 #52347e; }
+.calendar-art span { font-size: 2.8rem; font-weight: 900; }
+
+.challenge-section { padding-top: 80px; }
+.passport-stamp { display: grid; place-items: center; width: 105px; height: 105px; color: var(--purple); border: 4px double var(--purple); border-radius: 50%; font-size: .72rem; font-weight: 900; letter-spacing: .08em; line-height: 1.1; text-align: center; transform: rotate(7deg); }
+.challenge-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.challenge-card { position: relative; min-height: 360px; overflow: hidden; padding: 32px; border-radius: 22px; }
+.challenge-card::after { position: absolute; right: -45px; bottom: -60px; width: 180px; height: 180px; border: 30px solid rgb(255 255 255 / 28%); border-radius: 50%; content: ""; }
+.orange-card { background: #ffd9c2; }
+.green-card { background: var(--green-light); }
+.blue-card { background: var(--blue-light); }
+.challenge-number { position: absolute; top: 26px; right: 28px; font-size: .78rem; font-weight: 900; }
+.challenge-icon { display: grid; place-items: center; width: 70px; height: 70px; background: white; border-radius: 50%; font-size: 2.3rem; }
+.challenge-card h3 { max-width: 280px; margin: 30px 0 10px; font-size: 1.7rem; letter-spacing: -.04em; line-height: 1.05; }
+.challenge-card p { max-width: 300px; color: #514c45; }
+.challenge-card button { position: relative; z-index: 2; margin-top: 20px; padding: 0; background: transparent; border: 0; font-size: .82rem; font-weight: 900; cursor: pointer; }
+.challenge-note { margin: 20px 0 0; color: var(--muted); font-size: .8rem; text-align: center; }
+
+footer {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr auto;
+  gap: 32px;
+  align-items: center;
+  padding: 48px clamp(24px, 5vw, 80px);
+  color: white;
+  background: var(--ink);
+}
+.footer-brand { display: flex; gap: 12px; align-items: center; }
+.footer-brand div { display: grid; }
+.footer-brand span:last-child { color: #aaa69f; font-size: .75rem; }
+footer p { max-width: 650px; color: #b9b5ae; font-size: .78rem; }
+footer > a { color: #ffd6be; font-size: .82rem; font-weight: 800; }
+
+.facts-dialog {
+  width: min(680px, calc(100vw - 32px));
+  max-height: calc(100vh - 48px);
+  padding: 0;
+  overflow: auto;
+  background: white;
+  border: 0;
+  border-radius: 24px;
+  box-shadow: 0 30px 90px rgb(0 0 0 / 35%);
+}
+.facts-dialog::backdrop { background: rgb(15 15 15 / 65%); backdrop-filter: blur(4px); }
+.dialog-close { position: absolute; z-index: 4; top: 14px; right: 14px; display: grid; place-items: center; width: 38px; height: 38px; color: white; background: rgb(23 23 23 / 78%); border: 0; border-radius: 50%; font-size: 1.4rem; cursor: pointer; }
+.dialog-image { height: 240px; background-position: center; background-size: cover; }
+.dialog-body { padding: 28px; }
+.dialog-body h2 { margin: 14px 0 8px; font-size: 2rem; letter-spacing: -.05em; line-height: 1.05; }
+.dialog-address { margin: 0 0 22px; color: var(--muted); }
+.fact-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; overflow: hidden; background: var(--line); border: 1px solid var(--line); border-radius: 14px; }
+.fact-item { min-height: 88px; padding: 15px; background: white; }
+.fact-item span { display: block; margin-bottom: 5px; color: var(--muted); font-size: .65rem; font-weight: 900; letter-spacing: .07em; text-transform: uppercase; }
+.fact-item strong { font-size: .84rem; line-height: 1.35; }
+.dialog-notice { margin-top: 16px; padding: 12px 14px; color: #782e15; background: #ffebe1; border-radius: 10px; font-size: .78rem; font-weight: 800; }
+.dialog-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+.dialog-actions a { padding: 11px 14px; border: 1px solid var(--ink); border-radius: 10px; font-size: .78rem; font-weight: 900; text-decoration: none; }
+.dialog-actions a:first-child { color: white; background: var(--ink); }
+
+.toast { position: fixed; z-index: 100; right: 24px; bottom: 24px; max-width: 340px; padding: 13px 16px; color: white; background: var(--ink); border-radius: 11px; box-shadow: var(--shadow); font-size: .8rem; font-weight: 700; opacity: 0; pointer-events: none; transform: translateY(12px); transition: opacity .2s ease, transform .2s ease; }
+.toast.visible { opacity: 1; transform: translateY(0); }
+
+:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+
+@media (max-width: 1180px) {
+  .main-nav { gap: 16px; }
+  .facility-grid { grid-template-columns: repeat(2, 1fr); }
+  .filter-bar { grid-template-columns: repeat(2, 1fr); }
+  .clear-button { align-self: stretch; }
+  .calendar-section { margin-right: 24px; margin-left: 24px; }
+}
+
+@media (max-width: 900px) {
+  .site-header { align-items: flex-start; gap: 18px; }
+  .main-nav { justify-content: flex-end; flex-wrap: wrap; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-content { padding-bottom: 30px; }
+  .hero-visual { min-height: 420px; padding: 0 24px 36px; }
+  .hero-photo { min-height: 380px; border-radius: 24px 120px 24px 24px; }
+  .hero-sticker { top: -12px; left: 34px; }
+  .category-strip { grid-template-columns: 1fr; }
+  .category-tile { min-height: 100px; }
+  .today-card { grid-template-columns: 1fr; }
+  .today-image { min-height: 300px; }
+  .results-layout { grid-template-columns: 1fr; }
+  .map-panel { position: relative; top: 0; }
+  .challenge-grid { grid-template-columns: 1fr; }
+  .challenge-card { min-height: 310px; }
+  .calendar-section { grid-template-columns: auto 1fr; }
+  .calendar-section button { grid-column: 2; justify-self: start; }
+  footer { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 650px) {
+  .announcement { font-size: .62rem; }
+  .site-header { position: relative; display: grid; padding: 14px 20px; }
+  .main-nav { justify-content: flex-start; gap: 13px 18px; }
+  .main-nav > a, .nav-dropdown > summary { font-size: .78rem; }
+  .nav-dropdown-panel { position: fixed; top: auto; left: 20px; width: calc(100vw - 40px); }
+  .hero h1 { font-size: 3.6rem; }
+  .search-panel { padding: 18px; }
+  .location-row { grid-template-columns: 1fr 1fr; }
+  .location-field { grid-column: 1 / -1; }
+  .find-button { width: 100%; }
+  .section-shell { padding: 65px 20px; }
+  .section-heading { align-items: flex-start; flex-direction: column; }
+  .filter-bar { grid-template-columns: 1fr; }
+  .facility-grid { grid-template-columns: 1fr; }
+  .calendar-section { grid-template-columns: 1fr; margin: 20px; padding: 34px 24px; }
+  .calendar-section button { grid-column: 1; }
+  .passport-stamp { display: none; }
+  .fact-list { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="announcement">
+      <span>Free community resource</span>
+      <span aria-hidden="true">•</span>
+      <span>Austin-area parks & recreation</span>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="AMSC Activity Guide home">
+        <span class="brand-mark">AMSC</span>
+        <span class="brand-copy">
+          <strong>Activity Guide</strong>
+          <small>Move. Play. Explore.</small>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <details class="nav-dropdown">
+          <summary>Facilities</summary>
+          <div class="nav-dropdown-panel" id="facility-menu"></div>
+        </details>
+        <details class="nav-dropdown">
+          <summary>Programs</summary>
+          <div class="nav-dropdown-panel nav-coming-soon">
+            <strong>Programs are coming soon</strong>
+            <span>This area is ready for future program types.</span>
+          </div>
+        </details>
+        <details class="nav-dropdown">
+          <summary>Events</summary>
+          <div class="nav-dropdown-panel nav-coming-soon">
+            <strong>Events are coming soon</strong>
+            <span>Future event types will connect to the calendar.</span>
+          </div>
+        </details>
+        <a href="#calendar">Calendar</a>
+        <a href="#map">Map</a>
+        <a href="#challenges">Challenges</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-content">
+          <p class="eyebrow">Your guide to getting active</p>
+          <h1>Find your next place to move.</h1>
+          <p class="hero-intro">
+            Search Austin-area parks, trails, pools, recreation centers, nature preserves,
+            sports facilities, and dog parks—all in one friendly place.
+          </p>
+
+          <form class="search-panel" id="search-form">
+            <label class="field keyword-field">
+              <span>What are you looking for?</span>
+              <span class="input-shell">
+                <span class="input-icon" aria-hidden="true">⌕</span>
+                <input
+                  id="keyword-input"
+                  type="search"
+                  placeholder="Try “pool,” “tennis,” or a park name"
+                  autocomplete="off"
+                />
+              </span>
+            </label>
+
+            <div class="location-row">
+              <label class="field location-field">
+                <span>Near a ZIP code or address</span>
+                <span class="input-shell">
+                  <span class="input-icon" aria-hidden="true">⌖</span>
+                  <input
+                    id="location-input"
+                    type="text"
+                    placeholder="78704 or 800 W Riverside Dr."
+                    autocomplete="postal-code"
+                  />
+                </span>
+              </label>
+              <label class="field radius-field">
+                <span>Within</span>
+                <select id="radius-select" aria-label="Distance radius">
+                  <option value="5">5 miles</option>
+                  <option value="10" selected>10 miles</option>
+                  <option value="15">15 miles</option>
+                </select>
+              </label>
+              <button class="primary-button find-button" type="submit">Find places</button>
+            </div>
+            <div class="location-tools">
+              <button class="text-button" id="use-location" type="button">◎ Use my location</button>
+              <span id="location-status" role="status" aria-live="polite"></span>
+            </div>
+          </form>
+        </div>
+
+        <aside class="hero-visual" aria-label="Austin park scene">
+          <div class="hero-photo"></div>
+          <div class="hero-stat">
+            <strong>126</strong>
+            <span>places to explore</span>
+          </div>
+          <div class="hero-sticker">Outside is calling.</div>
+        </aside>
+      </section>
+
+      <section class="category-strip" aria-label="Explore categories">
+        <button class="category-tile facility-tile" data-scroll-to="explore">
+          <span class="category-icon" aria-hidden="true">♧</span>
+          <span><strong>Facilities</strong><small>Explore 126 places</small></span>
+          <span aria-hidden="true">→</span>
+        </button>
+        <button class="category-tile program-tile" data-coming-soon="Programs">
+          <span class="category-icon" aria-hidden="true">✦</span>
+          <span><strong>Programs</strong><small>Directory coming soon</small></span>
+          <span aria-hidden="true">→</span>
+        </button>
+        <button class="category-tile event-tile" data-scroll-to="calendar">
+          <span class="category-icon" aria-hidden="true">◫</span>
+          <span><strong>Events</strong><small>Calendar coming soon</small></span>
+          <span aria-hidden="true">→</span>
+        </button>
+      </section>
+
+      <section class="today-section section-shell" id="today">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow orange-text">The thing to do today…</p>
+            <h2>Start with one great place.</h2>
+          </div>
+          <button class="outline-button" id="surprise-me" type="button">Surprise me</button>
+        </div>
+        <article class="today-card" id="today-card" aria-live="polite"></article>
+      </section>
+
+      <section class="explore-section section-shell" id="explore">
+        <div class="section-heading explore-heading">
+          <div>
+            <p class="eyebrow blue-text">Explore facilities</p>
+            <h2>Find a place that fits your day.</h2>
+          </div>
+          <p class="results-count" id="results-count">Loading facilities…</p>
+        </div>
+
+        <div class="filter-bar" aria-label="Facility filters">
+          <label>
+            <span>Facility type</span>
+            <select id="type-filter"><option value="">All facility types</option></select>
+          </label>
+          <label>
+            <span>Activity</span>
+            <select id="activity-filter"><option value="">All activity tags</option></select>
+          </label>
+          <label>
+            <span>School</span>
+            <select id="school-filter"><option value="">All schools</option></select>
+          </label>
+          <label>
+            <span>Sort by</span>
+            <select id="sort-select">
+              <option value="recommended">Recommended</option>
+              <option value="distance">Distance</option>
+              <option value="cost">Cost: low to high</option>
+              <option value="name">Name: A–Z</option>
+            </select>
+          </label>
+          <button class="clear-button" id="clear-filters" type="button">Clear all</button>
+        </div>
+
+        <div class="active-filters" id="active-filters" aria-live="polite"></div>
+
+        <div class="results-layout">
+          <div>
+            <div class="facility-grid" id="facility-grid"></div>
+            <div class="empty-state" id="empty-state" hidden>
+              <span aria-hidden="true">⌕</span>
+              <h3>No places match those filters yet.</h3>
+              <p>Try widening your distance or clearing one of the filters.</p>
+              <button class="primary-button" id="empty-clear" type="button">Clear filters</button>
+            </div>
+            <button class="show-more" id="show-more" type="button">Show more places</button>
+          </div>
+
+          <aside class="map-panel" id="map">
+            <div class="map-heading">
+              <div>
+                <p class="eyebrow green-text">Map preview</p>
+                <h3>Your activity map</h3>
+              </div>
+              <span class="coming-pill">Coming soon</span>
+            </div>
+            <div class="map-canvas" id="map-canvas" aria-label="Preview of filtered facility locations"></div>
+            <p>
+              This space is reserved for a full interactive map. For now, the dots respond to
+              your facility filters.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="calendar-section" id="calendar">
+        <div class="calendar-art" aria-hidden="true">
+          <span>31</span>
+        </div>
+        <div>
+          <p class="eyebrow purple-text">Plan ahead</p>
+          <h2>Programs and events will live here.</h2>
+          <p>
+            The calendar area is ready to connect future classes, community programs, and
+            one-time events without cluttering the facility directory.
+          </p>
+        </div>
+        <button class="light-button" type="button" data-coming-soon="Calendar">Open calendar</button>
+      </section>
+
+      <section class="challenge-section section-shell" id="challenges">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow purple-text">Challenges</p>
+            <h2>Austin Parks Passport</h2>
+            <p class="section-subtitle">
+              A future series of friendly challenges designed to turn searching into doing.
+            </p>
+          </div>
+          <span class="passport-stamp" aria-hidden="true">ATX<br />PASSPORT</span>
+        </div>
+
+        <div class="challenge-grid">
+          <article class="challenge-card orange-card">
+            <span class="challenge-number">01</span>
+            <div class="challenge-icon" aria-hidden="true">☀</div>
+            <h3>The 10-Mile Explorer</h3>
+            <p>See how many parks you can discover within 10 miles of home.</p>
+            <button type="button" data-challenge-type="Park">Find nearby parks →</button>
+          </article>
+          <article class="challenge-card green-card">
+            <span class="challenge-number">02</span>
+            <div class="challenge-icon" aria-hidden="true">⌁</div>
+            <h3>Take the Trail</h3>
+            <p>Choose a trail, bring a friend, and make your first Passport memory.</p>
+            <button type="button" data-challenge-type="Trail">Show me trails →</button>
+          </article>
+          <article class="challenge-card blue-card">
+            <span class="challenge-number">03</span>
+            <div class="challenge-icon" aria-hidden="true">≋</div>
+            <h3>Make a Splash</h3>
+            <p>Find a pool or splash pad for a refreshing active day.</p>
+            <button type="button" data-challenge-type="Pool/Splash Pad">Find water play →</button>
+          </article>
+        </div>
+        <p class="challenge-note">
+          Passport tracking and virtual badges are planned for a future version.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-brand">
+        <span class="brand-mark">AMSC</span>
+        <div><strong>Activity Guide</strong><span>Making local movement easier to find.</span></div>
+      </div>
+      <p>
+        Facility information comes from the project workbook. Details may change; verify hours,
+        fees, and closures before visiting.
+      </p>
+      <a href="https://www.austintexas.gov/parks" target="_blank" rel="noreferrer">
+        Austin Parks & Recreation ↗
+      </a>
+    </footer>
+
+    <dialog class="facts-dialog" id="facts-dialog">
+      <button class="dialog-close" id="dialog-close" type="button" aria-label="Close quick facts">×</button>
+      <div id="dialog-content"></div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script>
+window.AMSC_FACILITIES = [
+  {
+    "name": "Astor Place Greenbelt",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "1716 Astor Pl.",
+    "city": "Austin",
+    "zip": "78721",
+    "longitude": -97.687136,
+    "latitude": 30.284488,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Marshall",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Auditorium Shores at Town Lake Metro Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "800 W Riverside Dr.",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.752467,
+    "latitude": 30.261569,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Auditorium Shores Dog Off-Leash Area",
+    "type": "Dog Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "800 W Riverside Dr.",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.752467,
+    "latitude": 30.261569,
+    "days": "Daily",
+    "hours": "",
+    "website": "https://www.austintexas.gov/parks/programs/dog-parks-leash-areas",
+    "school": "Lively",
+    "parentName": "Auditorium Shores at Town Lake Metro Park",
+    "notice": ""
+  },
+  {
+    "name": "Balcones District Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "12017 Amherst Dr.",
+    "city": "Austin",
+    "zip": "78759",
+    "longitude": -97.717698,
+    "latitude": 30.412848,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Murchison",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Balcones Pool",
+    "type": "Pool/Splash Pad",
+    "activity": "swimming",
+    "cost": "",
+    "address": "12017 Amherst Dr.",
+    "city": "Austin",
+    "zip": "78759",
+    "longitude": -97.722083,
+    "latitude": 30.411694,
+    "days": "Seasonal (Spring Break-Labor Day, weather permitting)",
+    "hours": "",
+    "website": "https://www.austintexas.gov/parks/locations/balcones-pool",
+    "school": "Murchison",
+    "parentName": "Balcones District Park",
+    "notice": ""
+  },
+  {
+    "name": "Bartholomew District Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "5201 Berkman Dr.",
+    "city": "Austin",
+    "zip": "78723",
+    "longitude": -97.694849,
+    "latitude": 30.303166,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Marshall",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Bartholomew Pool",
+    "type": "Pool/Splash Pad",
+    "activity": "swimming",
+    "cost": "Fee charged (Spring Break-AISD through end of Oct): Resident $2 child (1-11) / $3 junior (12-17) / $5 adult (18-62) / $2 senior (62+); Non-resident $4/$5/$9/$5. Free: under 1 & honorably discharged veterans.",
+    "address": "1800 E. 51st St.",
+    "city": "Austin",
+    "zip": "78723",
+    "longitude": -97.697759,
+    "latitude": 30.302703,
+    "days": "Year-round",
+    "hours": "",
+    "website": "https://www.austintexas.gov/parks/locations/bartholomew-pool",
+    "school": "Marshall",
+    "parentName": "Bartholomew District Park",
+    "notice": ""
+  },
+  {
+    "name": "Bartholomew Splash Pad",
+    "type": "Pool/Splash Pad",
+    "activity": "water play",
+    "cost": "",
+    "address": "5201 Berkman Dr.",
+    "city": "Austin",
+    "zip": "78723",
+    "longitude": -97.69763,
+    "latitude": 30.304854,
+    "days": "",
+    "hours": "",
+    "website": "https://www.austintexas.gov/parks/locations/bartholomew-splash-pad",
+    "school": "Marshall",
+    "parentName": "Bartholomew District Park",
+    "notice": ""
+  },
+  {
+    "name": "Bartholomew Disc Golf Course",
+    "type": "Sports Facility",
+    "activity": "disc golf",
+    "cost": "",
+    "address": "5201 Berkman Dr.",
+    "city": "Austin",
+    "zip": "78723",
+    "longitude": -97.694849,
+    "latitude": 30.303166,
+    "days": "",
+    "hours": "",
+    "website": "https://www.austintexas.gov/parks/locations/austin-parks-and-recreation-disc-golf-courses",
+    "school": "Marshall",
+    "parentName": "Bartholomew District Park",
+    "notice": ""
+  },
+  {
+    "name": "Bethany Greenbelt",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "1401 Waldorf Ave.",
+    "city": "Austin",
+    "zip": "78721",
+    "longitude": -97.688852,
+    "latitude": 30.280542,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Marshall",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Big Stacy Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "700 E Live Oak St.",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.746944,
+    "latitude": 30.240225,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Big Stacy Pool",
+    "type": "Pool/Splash Pad",
+    "activity": "swimming",
+    "cost": "",
+    "address": "700 E. Live Oak St.",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.747352,
+    "latitude": 30.239707,
+    "days": "Year-round",
+    "hours": "",
+    "website": "https://www.austintexas.gov/parks/locations/big-stacy-pool",
+    "school": "Lively",
+    "parentName": "Big Stacy Neighborhood Park",
+    "notice": ""
+  },
+  {
+    "name": "Bilbrook Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "10130 Bilbrook Pl.",
+    "city": "Austin",
+    "zip": "78748",
+    "longitude": -97.819669,
+    "latitude": 30.165547,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Paredes",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Blunn Creek Greenbelt",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "1901 East Side Dr.",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.745135,
+    "latitude": 30.243801,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Bull Creek Bluff Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "6309 Spicewood Springs Rd",
+    "city": "Austin",
+    "zip": "78759",
+    "longitude": -97.776697,
+    "latitude": 30.389876,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Murchison",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Bull Creek District Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "6701 Lakewood Dr.",
+    "city": "Austin",
+    "zip": "78731",
+    "longitude": -97.78433,
+    "latitude": 30.368264,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Murchison",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Cardinal Pocket Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "610 Cardinal Lane",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.766922,
+    "latitude": 30.23286,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Cherry Creek Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "3403 Silk Oak Dr.",
+    "city": "Austin",
+    "zip": "78748",
+    "longitude": -97.844843,
+    "latitude": 30.188334,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Covington",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Clawson Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "3701 Clawson Rd.",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.779995,
+    "latitude": 30.23344,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Colony Park District Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "7201 Colony Loop Dr.",
+    "city": "Austin",
+    "zip": "78724",
+    "longitude": -97.635287,
+    "latitude": 30.300407,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Marshall",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Colony Park Pool",
+    "type": "Pool/Splash Pad",
+    "activity": "swimming",
+    "cost": "",
+    "address": "7400 Loyola Ln.",
+    "city": "Austin",
+    "zip": "78724",
+    "longitude": -97.6391,
+    "latitude": 30.296726,
+    "days": "Year-round",
+    "hours": "",
+    "website": "https://www.austintexas.gov/parks/locations/colony-park-district-pool",
+    "school": "Marshall",
+    "parentName": "Colony Park District Park",
+    "notice": ""
+  },
+  {
+    "name": "Turner-Roberts Recreation Center",
+    "type": "Recreation Center",
+    "activity": "multi: sports, arts & crafts, playground",
+    "cost": "",
+    "address": "7201 Colony Loop Dr.",
+    "city": "Austin",
+    "zip": "78724",
+    "longitude": -97.637029,
+    "latitude": 30.302601,
+    "days": "",
+    "hours": "",
+    "website": "https://www.austintexas.gov/department/turner-roberts-recreation-center",
+    "school": "Marshall",
+    "parentName": "Colony Park District Park",
+    "notice": ""
+  },
+  {
+    "name": "Country Club Creek Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "2413 Douglas St.",
+    "city": "Austin",
+    "zip": "78741",
+    "longitude": -97.733046,
+    "latitude": 30.227183,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Cunningham School Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "6213 Buffalo Pass",
+    "city": "Austin",
+    "zip": "78745",
+    "longitude": -97.80557,
+    "latitude": 30.210892,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Covington",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Davis Hill Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "3402 Davis Ln.",
+    "city": "Austin",
+    "zip": "78745",
+    "longitude": -97.839325,
+    "latitude": 30.194863,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Covington",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Davis/White Northeast Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "6705 Crystalbrook Dr.",
+    "city": "Austin",
+    "zip": "78724",
+    "longitude": -97.655128,
+    "latitude": 30.303705,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Marshall",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Davis-White NE Dog Off-Leash Area",
+    "type": "Dog Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "6705 Crystalbrook Dr.",
+    "city": "Austin",
+    "zip": "78724",
+    "longitude": -97.655128,
+    "latitude": 30.303705,
+    "days": "Daily",
+    "hours": "",
+    "website": "https://www.austintexas.gov/parks/programs/dog-parks-leash-areas",
+    "school": "Marshall",
+    "parentName": "Davis/White Northeast Neighborhood Park",
+    "notice": ""
+  },
+  {
+    "name": "Doss School Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "3902 North Hills Drive.",
+    "city": "Austin",
+    "zip": "78731",
+    "longitude": -97.76213,
+    "latitude": 30.355593,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Murchison",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Dottie Jordan Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "2803 Loyola Ln.",
+    "city": "Austin",
+    "zip": "78723",
+    "longitude": -97.674029,
+    "latitude": 30.313813,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Marshall",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Dottie Jordan Pool",
+    "type": "Pool/Splash Pad",
+    "activity": "swimming",
+    "cost": "",
+    "address": "2803 Loyola Ln.",
+    "city": "Austin",
+    "zip": "78723",
+    "longitude": -97.674011,
+    "latitude": 30.31487,
+    "days": "Seasonal (Spring Break-Labor Day, weather permitting)",
+    "hours": "",
+    "website": "https://www.austintexas.gov/parks/locations/dottie-jordan-pool",
+    "school": "Marshall",
+    "parentName": "Dottie Jordan Neighborhood Park",
+    "notice": ""
+  },
+  {
+    "name": "Dottie Jordan Recreation Center",
+    "type": "Recreation Center",
+    "activity": "multi: swimming, sports, playground",
+    "cost": "",
+    "address": "2803 Loyola Ln.",
+    "city": "Austin",
+    "zip": "78723",
+    "longitude": -97.673367,
+    "latitude": 30.314377,
+    "days": "",
+    "hours": "",
+    "website": "https://www.austintexas.gov/department/dottie-jordan-recreation-center",
+    "school": "Marshall",
+    "parentName": "Dottie Jordan Neighborhood Park",
+    "notice": ""
+  },
+  {
+    "name": "Earl J. Pomerleau Pocket Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "1906 Patton Ln.",
+    "city": "Austin",
+    "zip": "78723",
+    "longitude": -97.686799,
+    "latitude": 30.318488,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Marshall",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "East Bouldin Creek Greenbelt",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "901 Bouldin Ave.",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.753953,
+    "latitude": 30.255761,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Ellen Higgins Pocket Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "2711 Cameron Loop",
+    "city": "Austin",
+    "zip": "78745",
+    "longitude": -97.826751,
+    "latitude": 30.192004,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Covington",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Gillis Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "2410 Durwood St.",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.7594,
+    "latitude": 30.240606,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Gillis Pool",
+    "type": "Pool/Splash Pad",
+    "activity": "swimming",
+    "cost": "",
+    "address": "2410 Durwood Ave.",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.758151,
+    "latitude": 30.2412,
+    "days": "Seasonal (Spring Break-Labor Day, weather permitting)",
+    "hours": "",
+    "website": "https://www.austintexas.gov/parks/locations/gillis-pool",
+    "school": "Lively",
+    "parentName": "Gillis Neighborhood Park",
+    "notice": ""
+  },
+  {
+    "name": "Givens District Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "3811 E 12th St.",
+    "city": "Austin",
+    "zip": "78721",
+    "longitude": -97.691499,
+    "latitude": 30.276018,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Marshall",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Givens Pool",
+    "type": "Pool/Splash Pad",
+    "activity": "swimming",
+    "cost": "",
+    "address": "3811 E. 12th St.",
+    "city": "Austin",
+    "zip": "78721",
+    "longitude": -97.6907,
+    "latitude": 30.278326,
+    "days": "Seasonal (Spring Break-Labor Day, weather permitting)",
+    "hours": "",
+    "website": "https://www.austintexas.gov/parks/locations/givens-district-pool",
+    "school": "Marshall",
+    "parentName": "Givens District Park",
+    "notice": ""
+  },
+  {
+    "name": "Givens Recreation Center",
+    "type": "Recreation Center",
+    "activity": "multi: swimming, sports, playground",
+    "cost": "",
+    "address": "3811 E. 12th St.",
+    "city": "Austin",
+    "zip": "78721",
+    "longitude": -97.690739,
+    "latitude": 30.278373,
+    "days": "",
+    "hours": "",
+    "website": "https://www.austintexas.gov/department/givens-recreation-center",
+    "school": "Marshall",
+    "parentName": "Givens District Park",
+    "notice": "Renovation noted — verify before visiting"
+  },
+  {
+    "name": "Grand Meadow Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "8022 Thaxton Dr.",
+    "city": "Austin",
+    "zip": "78747",
+    "longitude": -97.742485,
+    "latitude": 30.156697,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Paredes",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Great Hills Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "10801 Sierra Oaks",
+    "city": "Austin",
+    "zip": "78759",
+    "longitude": -97.756706,
+    "latitude": 30.409892,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Murchison",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Harpers Branch Creek Greenbelt",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "1405 Kenwood Ave.",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.738914,
+    "latitude": 30.245333,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Heatherly Pocket Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "11901 Heatherly Dr",
+    "city": "Austin",
+    "zip": "78747",
+    "longitude": -97.79928,
+    "latitude": 30.128876,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Paredes",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Heritage Oaks Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "2100 Parker Ln.",
+    "city": "Austin",
+    "zip": "78741",
+    "longitude": -97.737181,
+    "latitude": 30.234317,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Hill School Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "8405 Tallwood Dr.",
+    "city": "Austin",
+    "zip": "78759",
+    "longitude": -97.749279,
+    "latitude": 30.375796,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Murchison",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Hubert C. Schroeter Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "11701 Big Trl.",
+    "city": "Austin",
+    "zip": "78759",
+    "longitude": -97.737747,
+    "latitude": 30.413281,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Murchison",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "James A. Garrison District Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "6001 Menchaca Rd.",
+    "city": "Austin",
+    "zip": "78745",
+    "longitude": -97.799213,
+    "latitude": 30.211274,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Covington",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Garrison Pool",
+    "type": "Pool/Splash Pad",
+    "activity": "swimming",
+    "cost": "Fee charged (Spring Break-AISD through end of Oct): Resident $2 child (1-11) / $3 junior (12-17) / $5 adult (18-62) / $2 senior (62+); Non-resident $4/$5/$9/$5. Free: under 1 & honorably discharged veterans.",
+    "address": "6001 Menchaca Rd.",
+    "city": "Austin",
+    "zip": "78745",
+    "longitude": -97.800917,
+    "latitude": 30.213581,
+    "days": "Seasonal (Spring Break-Labor Day, weather permitting)",
+    "hours": "",
+    "website": "https://www.austintexas.gov/parks/locations/garrison-pool",
+    "school": "Covington",
+    "parentName": "James A. Garrison District Park",
+    "notice": ""
+  },
+  {
+    "name": "Janet Long Fish Park @ Harris Branch Greenbelt",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "13840 Dessau Rd.",
+    "city": "Austin",
+    "zip": "78660",
+    "longitude": -97.637817,
+    "latitude": 30.411434,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Dessau",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Joslin Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "2106 Cimaron Trl.",
+    "city": "Austin",
+    "zip": "78745",
+    "longitude": -97.792,
+    "latitude": 30.228713,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Covington",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Lazy Creek Greenbelt",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "7002 1/2 Lewiston Way",
+    "city": "Austin",
+    "zip": "78724",
+    "longitude": -97.658527,
+    "latitude": 30.307892,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Marshall",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Little Stacy Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "1500 Alameda Dr.",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.74384,
+    "latitude": 30.247222,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Little Walnut Creek Greenbelt",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "6201 Springdale Rd.",
+    "city": "Austin",
+    "zip": "78723",
+    "longitude": -97.668162,
+    "latitude": 30.298384,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Marshall",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Little Walnut Creek Dog Off-Leash Area",
+    "type": "Dog Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "6201 Springdale Rd.",
+    "city": "Austin",
+    "zip": "78723",
+    "longitude": -97.668162,
+    "latitude": 30.298384,
+    "days": "Daily",
+    "hours": "",
+    "website": "https://www.austintexas.gov/parks/programs/dog-parks-leash-areas",
+    "school": "Marshall",
+    "parentName": "Little Walnut Creek Greenbelt",
+    "notice": ""
+  },
+  {
+    "name": "Loewy Family Playground",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "7022 Hart Ln.",
+    "city": "Austin",
+    "zip": "78731",
+    "longitude": -97.757672,
+    "latitude": 30.353522,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Murchison",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Murchison Pool",
+    "type": "Pool/Splash Pad",
+    "activity": "swimming",
+    "cost": "",
+    "address": "7022 Hart Ln.",
+    "city": "Austin",
+    "zip": "78731",
+    "longitude": -97.757672,
+    "latitude": 30.353522,
+    "days": "Seasonal (Spring Break-Labor Day, weather permitting)",
+    "hours": "",
+    "website": "https://www.austintexas.gov/parks/locations/murchison-pool",
+    "school": "Murchison",
+    "parentName": "Loewy Family Playground",
+    "notice": "Closed — verify before visiting"
+  },
+  {
+    "name": "Longview Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "7609 Longview Rd.",
+    "city": "Austin",
+    "zip": "78745",
+    "longitude": -97.826269,
+    "latitude": 30.2027,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Covington",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Lower Bull Creek Greenbelt",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "7806 N Capital of Texas Hwy.",
+    "city": "Austin",
+    "zip": "78731",
+    "longitude": -97.774666,
+    "latitude": 30.378407,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Murchison",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Mabel Davis District Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "3427 Parker Ln.",
+    "city": "Austin",
+    "zip": "78741",
+    "longitude": -97.740295,
+    "latitude": 30.220467,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Mabel Davis Pool",
+    "type": "Pool/Splash Pad",
+    "activity": "swimming",
+    "cost": "",
+    "address": "3427 Parker Ln.",
+    "city": "Austin",
+    "zip": "78741",
+    "longitude": -97.743032,
+    "latitude": 30.219982,
+    "days": "Seasonal (Spring Break-Labor Day, weather permitting)",
+    "hours": "",
+    "website": "https://www.austintexas.gov/parks/locations/mabel-davis-pool",
+    "school": "Lively",
+    "parentName": "Mabel Davis District Park",
+    "notice": ""
+  },
+  {
+    "name": "Marble Creek Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "6704 Zequiel Dr.",
+    "city": "Austin",
+    "zip": "78744",
+    "longitude": -97.735299,
+    "latitude": 30.162926,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Paredes",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Mary Dawson Pocket Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "650 Dawson Rd.",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.756426,
+    "latitude": 30.259082,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Mary Moore Searight Metro Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "907 W Slaughter Ln.",
+    "city": "Austin",
+    "zip": "78748",
+    "longitude": -97.807462,
+    "latitude": 30.161218,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Paredes",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Mary Moore Searight Dog Off-Leash Area",
+    "type": "Dog Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "907 W Slaughter Ln.",
+    "city": "Austin",
+    "zip": "78748",
+    "longitude": -97.807462,
+    "latitude": 30.161218,
+    "days": "Daily",
+    "hours": "",
+    "website": "https://www.austintexas.gov/parks/programs/dog-parks-leash-areas",
+    "school": "Paredes",
+    "parentName": "Mary Moore Searight Metro Park",
+    "notice": ""
+  },
+  {
+    "name": "Mary Moore Searight Disc Golf Course",
+    "type": "Sports Facility",
+    "activity": "disc golf",
+    "cost": "",
+    "address": "907 W Slaughter Ln.",
+    "city": "Austin",
+    "zip": "78748",
+    "longitude": -97.807462,
+    "latitude": 30.161218,
+    "days": "",
+    "hours": "",
+    "website": "https://www.austintexas.gov/parks/locations/austin-parks-and-recreation-disc-golf-courses",
+    "school": "Paredes",
+    "parentName": "Mary Moore Searight Metro Park",
+    "notice": ""
+  },
+  {
+    "name": "Metcalfe Pocket Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "2648 Metcalfe Rd.",
+    "city": "Austin",
+    "zip": "78741",
+    "longitude": -97.737847,
+    "latitude": 30.227617,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Michael Butler Park at Town Lake Metro Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "1000 Barton Springs Rd. Austin",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.754327,
+    "latitude": 30.261889,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Nicholas Dawson Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "704 W James St.",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.754808,
+    "latitude": 30.25269,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Norman School Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "5701 Samuel Huston Ave",
+    "city": "Austin",
+    "zip": "78721",
+    "longitude": -97.673458,
+    "latitude": 30.277766,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Marshall",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "North Cat Mountain Greenbelt",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "6801 Cat Creek Trl.",
+    "city": "Austin",
+    "zip": "78731",
+    "longitude": -97.778032,
+    "latitude": 30.364191,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Murchison",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Norwood Hill Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "5401 Springdale Rd.",
+    "city": "Austin",
+    "zip": "78723",
+    "longitude": -97.674569,
+    "latitude": 30.297347,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Marshall",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Old San Antonio District Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "12110 Old San Antonio Rd.",
+    "city": "Austin",
+    "zip": "78652",
+    "longitude": -97.815111,
+    "latitude": 30.132114,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Paredes",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Onion Creek Greenbelt",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "7004 Onion Creek Dr.",
+    "city": "Austin",
+    "zip": "78744",
+    "longitude": -97.767659,
+    "latitude": 30.158322,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Paredes",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Onion Creek Greenbelt Dog Off-Leash Area",
+    "type": "Dog Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "7004 Onion Creek Dr.",
+    "city": "Austin",
+    "zip": "78744",
+    "longitude": -97.767659,
+    "latitude": 30.158322,
+    "days": "Daily",
+    "hours": "",
+    "website": "https://www.austintexas.gov/parks/programs/dog-parks-leash-areas",
+    "school": "Paredes",
+    "parentName": "Onion Creek Greenbelt",
+    "notice": ""
+  },
+  {
+    "name": "Onion Creek Metro Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "8652 Nuckols Crossing Rd.",
+    "city": "Austin",
+    "zip": "78744",
+    "longitude": -97.753472,
+    "latitude": 30.16566,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Paredes",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Piney Bend Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "8601 Piney Creek Bnd.",
+    "city": "Austin",
+    "zip": "78745",
+    "longitude": -97.833053,
+    "latitude": 30.193198,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Covington",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Red Bluff Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "5805 Harold Ct.",
+    "city": "Austin",
+    "zip": "78721",
+    "longitude": -97.67656,
+    "latitude": 30.26861,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Marshall",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Riata Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "12401 Riata Trace Pkwy.",
+    "city": "Austin",
+    "zip": "78727",
+    "longitude": -97.739502,
+    "latitude": 30.428442,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Murchison",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Ricky Guerrero Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "2006 S 6th St.",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.764545,
+    "latitude": 30.247654,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Ricky Guerrero Splash Pad",
+    "type": "Pool/Splash Pad",
+    "activity": "water play",
+    "cost": "",
+    "address": "1100 Brodie St.",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.763615,
+    "latitude": 30.246966,
+    "days": "",
+    "hours": "",
+    "website": "https://www.austintexas.gov/parks/locations/ricky-guerrero-splash-pad",
+    "school": "Lively",
+    "parentName": "Ricky Guerrero Neighborhood Park",
+    "notice": ""
+  },
+  {
+    "name": "Rinard Creek Greenbelt",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "10625 1/2 Bradshaw Rd.",
+    "city": "Austin",
+    "zip": "78747",
+    "longitude": -97.770879,
+    "latitude": 30.135529,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Paredes",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Riverside Shores at Town Lake Metro Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "1009 Edgecliff Ter.",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.739076,
+    "latitude": 30.251275,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Salt Springs Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "6401 E William Cannon Dr.",
+    "city": "Austin",
+    "zip": "78744",
+    "longitude": -97.738619,
+    "latitude": 30.167733,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Paredes",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Schieffer Tract",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "3404 Hycreek Dr.",
+    "city": "Austin",
+    "zip": "78723",
+    "longitude": -97.670764,
+    "latitude": 30.307035,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Marshall",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Sendera Mesa Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "4717 Davis Ln.",
+    "city": "Austin",
+    "zip": "78749",
+    "longitude": -97.85986,
+    "latitude": 30.2029,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Covington",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Silk Oak Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "3204 Silk Oak Dr.",
+    "city": "Austin",
+    "zip": "78748",
+    "longitude": -97.840385,
+    "latitude": 30.185581,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Covington",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Silver Creek Pocket Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "13007 Silver Creek Dr",
+    "city": "Austin",
+    "zip": "78727",
+    "longitude": -97.711854,
+    "latitude": 30.430732,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Murchison",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Slaughter Creek Greenbelt",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "10003 S 1st St.",
+    "city": "Austin",
+    "zip": "78748",
+    "longitude": -97.800221,
+    "latitude": 30.15653,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Paredes",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Slaughter Creek Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "10413 S IH 35 SVRD NB",
+    "city": "Austin",
+    "zip": "78747",
+    "longitude": -97.787852,
+    "latitude": 30.147192,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Paredes",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "South Austin Island",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "2205 S Congress Ave.",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.75242,
+    "latitude": 30.241406,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "South Austin Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "1100 Cumberland Rd.",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.768906,
+    "latitude": 30.242268,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "South Austin Recreation Center",
+    "type": "Recreation Center",
+    "activity": "multi: sports, playground",
+    "cost": "",
+    "address": "1100 Cumberland Rd.",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.768842,
+    "latitude": 30.241006,
+    "days": "",
+    "hours": "",
+    "website": "https://www.austintexas.gov/department/south-austin-recreation-center",
+    "school": "Lively",
+    "parentName": "South Austin Neighborhood Park",
+    "notice": ""
+  },
+  {
+    "name": "South Austin Tennis Center",
+    "type": "Sports Facility",
+    "activity": "tennis",
+    "cost": "Court fees: Juniors $2 resident/$5 non-resident; Seniors $3/$5; Adults $4/$5. Source: austintexas.gov/parks/tennis.",
+    "address": "1000 Cumberland Rd.",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": null,
+    "latitude": null,
+    "days": "",
+    "hours": "",
+    "website": "https://rippnertennis.com",
+    "school": "",
+    "parentName": "South Austin Recreation Center",
+    "notice": ""
+  },
+  {
+    "name": "Southeast Mueller Greenbelt",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "3601 Zach Scott St.",
+    "city": "Austin",
+    "zip": "78723",
+    "longitude": -97.691969,
+    "latitude": 30.291367,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Marshall",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Southern Walnut Creek Greenbelt",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "6013 Loyola Ln",
+    "city": "Austin",
+    "zip": "78724",
+    "longitude": -97.648218,
+    "latitude": 30.311882,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Marshall",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Springdale Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "1175 Nickols Ave.",
+    "city": "Austin",
+    "zip": "78721",
+    "longitude": -97.681977,
+    "latitude": 30.277566,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Marshall",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Steck Valley Greenbelt",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "8403 Adirondack Trl.",
+    "city": "Austin",
+    "zip": "78759",
+    "longitude": -97.758492,
+    "latitude": 30.383514,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Murchison",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Stoney Ridge Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "7000 Moores Crossing Blvd.",
+    "city": "Austin",
+    "zip": "78617",
+    "longitude": -97.651316,
+    "latitude": 30.157817,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Sweeney Pocket Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "2712 Sweeney Ln.",
+    "city": "Austin",
+    "zip": "78723",
+    "longitude": -97.68132,
+    "latitude": 30.307368,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Marshall",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Tahoe Trail Pocket Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "5205 Tahoe Trl.",
+    "city": "Austin",
+    "zip": "78745",
+    "longitude": -97.802538,
+    "latitude": 30.223556,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Covington",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Tannehill Branch Greenbelt",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "2403 E 51st St.",
+    "city": "Austin",
+    "zip": "78723",
+    "longitude": -97.688956,
+    "latitude": 30.298526,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Marshall",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "The Circle Greenbelt",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "1300 The Circle",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.746675,
+    "latitude": 30.250904,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Vernon R. Wattinger Jr. Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "9400 Texas Oaks Dr.",
+    "city": "Austin",
+    "zip": "78748",
+    "longitude": -97.815602,
+    "latitude": 30.175526,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Paredes",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Vic Mathias Shores at Town Lake Metro Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "700 W Riverside Dr.",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.750019,
+    "latitude": 30.261999,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "West Bouldin Creek Greenbelt",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "1200 S 6th St.",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.758739,
+    "latitude": 30.256383,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "West Bouldin Creek Dog Off-Leash Area",
+    "type": "Dog Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "1200 S 6th St.",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.758739,
+    "latitude": 30.256383,
+    "days": "Daily",
+    "hours": "",
+    "website": "https://www.austintexas.gov/parks/programs/dog-parks-leash-areas",
+    "school": "Lively",
+    "parentName": "West Bouldin Creek Greenbelt",
+    "notice": ""
+  },
+  {
+    "name": "Westminister Pocket Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "5900 Westminster Dr",
+    "city": "Austin",
+    "zip": "78723",
+    "longitude": -97.69125,
+    "latitude": 30.311563,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Marshall",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Woodland Pocket Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "1810 Woodland Ave.",
+    "city": "Austin",
+    "zip": "78741",
+    "longitude": -97.731315,
+    "latitude": 30.237907,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Wunneburger Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "11901 Old San Antonio Rd.",
+    "city": "Austin",
+    "zip": "78652",
+    "longitude": -97.808535,
+    "latitude": 30.134273,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Paredes",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Yett Creek Neighborhood Park",
+    "type": "Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "12538 Riata Vista Cir.",
+    "city": "Austin",
+    "zip": "78727",
+    "longitude": -97.73225,
+    "latitude": 30.428894,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Murchison",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Ann and Roy Butler Hike and Bike Trail",
+    "type": "Trail",
+    "activity": "biking",
+    "cost": "",
+    "address": "800 W Riverside Dr.",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.751326,
+    "latitude": 30.261828,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "https://www.austintexas.gov/parks/locations/trail-directory",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Barrow Nature Preserve",
+    "type": "Nature Center/Preserve",
+    "activity": "Multi",
+    "cost": "",
+    "address": "7515 Step Down Cv.",
+    "city": "Austin",
+    "zip": "78731",
+    "longitude": -97.76882043265638,
+    "latitude": 30.37159274439188,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Murchison",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Big Walnut Creek Nature Preserve",
+    "type": "Nature Center/Preserve",
+    "activity": "Multi",
+    "cost": "",
+    "address": "9221 E US 290 Hwy EB",
+    "city": "Austin",
+    "zip": "78724",
+    "longitude": -97.65108392383009,
+    "latitude": 30.32629598403671,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Marshall",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Blunn Creek Nature Preserve",
+    "type": "Nature Center/Preserve",
+    "activity": "Multi",
+    "cost": "",
+    "address": "1200 St. Edwards Dr.",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.74744072831659,
+    "latitude": 30.23285362105061,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Deer Park at Maple Run Preserve",
+    "type": "Nature Center/Preserve",
+    "activity": "Multi",
+    "cost": "",
+    "address": "4929 Davis Ln.",
+    "city": "Austin",
+    "zip": "78749",
+    "longitude": -97.86143966258037,
+    "latitude": 30.20503167505104,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Covington",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Double Creek Bark Park",
+    "type": "Dog Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "Brezza Ln.",
+    "city": "Austin",
+    "zip": "78748",
+    "longitude": -97.799756,
+    "latitude": 30.144917,
+    "days": "Daily",
+    "hours": "",
+    "website": "https://www.austintexas.gov/parks/programs/dog-parks-leash-areas",
+    "school": "Paredes",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Double Creek Neighborhood Park",
+    "type": "Dog Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "10801 Brezza Ln.",
+    "city": "Austin",
+    "zip": "78748",
+    "longitude": -97.7947212,
+    "latitude": 30.1501176,
+    "days": "Daily",
+    "hours": "",
+    "website": "https://www.austintexas.gov/parks/programs/dog-parks-leash-areas",
+    "school": "Paredes",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Goat Cave Karst Nature Preserve",
+    "type": "Nature Center/Preserve",
+    "activity": "Multi",
+    "cost": "",
+    "address": "3900 Deer Ln.",
+    "city": "Austin",
+    "zip": "78749",
+    "longitude": -97.84660184610367,
+    "latitude": 30.19908837422689,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Covington",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Liz Carpenter Splash Pad",
+    "type": "Pool/Splash Pad",
+    "activity": "water play",
+    "cost": "",
+    "address": "200 Dawson Rd.",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.755603,
+    "latitude": 30.260608,
+    "days": "",
+    "hours": "",
+    "website": "https://www.austintexas.gov/parks/locations/liz-carpenter-splash-pad",
+    "school": "Lively",
+    "parentName": "",
+    "notice": "Closed for repairs — verify before visiting"
+  },
+  {
+    "name": "Morris Williams Golf Course",
+    "type": "Sports Facility",
+    "activity": "golf",
+    "cost": "18-hole: $35 Mon-Thu / $41 Fri / $44 Sat-Sun-Holiday; 9-hole: $28 (any day); Junior (<=18): $20; Senior (60+): $27-$34; Twilight/Sunset: $28-$31. Source: GolfATX fee schedule.",
+    "address": "3851 Manor Rd.",
+    "city": "Austin",
+    "zip": "78723",
+    "longitude": -97.68935,
+    "latitude": 30.28768,
+    "days": "",
+    "hours": "",
+    "website": "https://www.austintexas.gov/golfatx",
+    "school": "Marshall",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Riverside Shores",
+    "type": "Dog Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "1016 Edgecliff Terrace",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.738170756901,
+    "latitude": 30.250371472419,
+    "days": "Daily",
+    "hours": "",
+    "website": "https://www.austintexas.gov/parks/programs/dog-parks-leash-areas",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Springfield Neighborhood Park Trail",
+    "type": "Trail",
+    "activity": "Multi",
+    "cost": "",
+    "address": "6500 E William Cannon Dr.",
+    "city": "Austin",
+    "zip": "78744",
+    "longitude": -97.736762,
+    "latitude": 30.166643,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "https://www.austintexas.gov/parks/locations/trail-directory",
+    "school": "Paredes",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Stacy Wading Pool",
+    "type": "Pool/Splash Pad",
+    "activity": "swimming",
+    "cost": "",
+    "address": "1401 Sunset Ln.",
+    "city": "Austin",
+    "zip": "78704",
+    "longitude": -97.744289,
+    "latitude": 30.247735,
+    "days": "Seasonal (Spring Break-Labor Day, weather permitting)",
+    "hours": "",
+    "website": "https://www.austintexas.gov/parks/locations/little-stacy-wading-pool",
+    "school": "Lively",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Stephenson Nature Preserve & Outdoor Education Center",
+    "type": "Nature Center/Preserve",
+    "activity": "Multi",
+    "cost": "",
+    "address": "7501 Longview Rd.",
+    "city": "Austin",
+    "zip": "78745",
+    "longitude": -97.82465417557493,
+    "latitude": 30.20724540313951,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Covington",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Stillhouse Hollow Nature Preserve",
+    "type": "Nature Center/Preserve",
+    "activity": "Multi",
+    "cost": "",
+    "address": "7810 Sterling Dr.",
+    "city": "Austin",
+    "zip": "78731",
+    "longitude": -97.76301504607599,
+    "latitude": 30.37068954159152,
+    "days": "Daily",
+    "hours": "5:00 AM–10:00 PM daily (general City of Austin park hours, Austin City Code Title 8 Ch. 8-1 Art. 2, unless otherwise posted)",
+    "website": "",
+    "school": "Murchison",
+    "parentName": "",
+    "notice": ""
+  },
+  {
+    "name": "Walden Bark Park",
+    "type": "Dog Park",
+    "activity": "Multi",
+    "cost": "",
+    "address": "4907 Springdale Rd.",
+    "city": "Austin",
+    "zip": "78723",
+    "longitude": -97.678350725251,
+    "latitude": 30.292485863911,
+    "days": "Daily",
+    "hours": "",
+    "website": "https://www.austintexas.gov/parks/programs/dog-parks-leash-areas",
+    "school": "Marshall",
+    "parentName": "",
+    "notice": ""
+  }
+];
+
+    </script>
+    <script>
+const PARKS_DIRECTORY = "https://www.austintexas.gov/parks";
+
+const typeImages = {
+  Park: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=78",
+  Trail: "https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=900&q=78",
+  "Pool/Splash Pad": "https://images.unsplash.com/photo-1530053969600-caed2596d242?auto=format&fit=crop&w=900&q=78",
+  "Dog Park": "https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=900&q=78",
+  "Nature Center/Preserve": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=78",
+  "Recreation Center": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=900&q=78",
+  "Sports Facility": "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=900&q=78",
+};
+
+const fallbackImage =
+  "https://images.unsplash.com/photo-1533777324565-a040eb52facd?auto=format&fit=crop&w=900&q=78";
+
+const state = {
+  facilities: [],
+  filtered: [],
+  visible: 12,
+  location: null,
+  featuredIndex: 0,
+};
+
+const elements = {
+  searchForm: document.querySelector("#search-form"),
+  keyword: document.querySelector("#keyword-input"),
+  location: document.querySelector("#location-input"),
+  radius: document.querySelector("#radius-select"),
+  locationStatus: document.querySelector("#location-status"),
+  useLocation: document.querySelector("#use-location"),
+  type: document.querySelector("#type-filter"),
+  activity: document.querySelector("#activity-filter"),
+  school: document.querySelector("#school-filter"),
+  sort: document.querySelector("#sort-select"),
+  clear: document.querySelector("#clear-filters"),
+  emptyClear: document.querySelector("#empty-clear"),
+  grid: document.querySelector("#facility-grid"),
+  empty: document.querySelector("#empty-state"),
+  count: document.querySelector("#results-count"),
+  showMore: document.querySelector("#show-more"),
+  filters: document.querySelector("#active-filters"),
+  facilityMenu: document.querySelector("#facility-menu"),
+  map: document.querySelector("#map-canvas"),
+  today: document.querySelector("#today-card"),
+  surprise: document.querySelector("#surprise-me"),
+  dialog: document.querySelector("#facts-dialog"),
+  dialogContent: document.querySelector("#dialog-content"),
+  dialogClose: document.querySelector("#dialog-close"),
+  toast: document.querySelector("#toast"),
+};
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function unique(values) {
+  return [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b));
+}
+
+function imageFor(type) {
+  return typeImages[type] ?? fallbackImage;
+}
+
+function addressFor(facility) {
+  return [facility.address, facility.city, facility.zip].filter(Boolean).join(", ");
+}
+
+function shortHours(hours) {
+  if (!hours) return "Hours not listed";
+  return hours.replace(/\s*\(general City of Austin park hours.*$/i, "").trim();
+}
+
+function shortCost(cost) {
+  if (!cost) return "Cost not listed";
+  if (/18-hole/i.test(cost)) return "Golf course fees";
+  if (/court fees/i.test(cost)) return "Court fees";
+  if (/fee charged/i.test(cost)) return "Entry fee";
+  return cost.length > 36 ? "Fee information available" : cost;
+}
+
+function minimumCost(cost) {
+  if (!cost) return Number.POSITIVE_INFINITY;
+  const values = [...cost.matchAll(/\$(\d+(?:\.\d+)?)/g)].map((match) => Number(match[1]));
+  return values.length ? Math.min(...values) : Number.POSITIVE_INFINITY;
+}
+
+function haversineMiles(lat1, lon1, lat2, lon2) {
+  const toRadians = (degrees) => (degrees * Math.PI) / 180;
+  const radius = 3958.8;
+  const dLat = toRadians(lat2 - lat1);
+  const dLon = toRadians(lon2 - lon1);
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRadians(lat1)) *
+      Math.cos(toRadians(lat2)) *
+      Math.sin(dLon / 2) ** 2;
+  return radius * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+function optionMarkup(value) {
+  return `<option value="${escapeHtml(value)}">${escapeHtml(value)}</option>`;
+}
+
+function populateControls() {
+  const types = unique(state.facilities.map((facility) => facility.type));
+  const activities = unique(state.facilities.map((facility) => facility.activity));
+  const schools = unique(state.facilities.map((facility) => facility.school));
+
+  elements.type.insertAdjacentHTML("beforeend", types.map(optionMarkup).join(""));
+  elements.activity.insertAdjacentHTML("beforeend", activities.map(optionMarkup).join(""));
+  elements.school.insertAdjacentHTML("beforeend", schools.map(optionMarkup).join(""));
+  elements.facilityMenu.innerHTML = [
+    '<button type="button" data-menu-type="">View all facilities</button>',
+    ...types.map(
+      (type) =>
+        `<button type="button" data-menu-type="${escapeHtml(type)}">${escapeHtml(type)}</button>`,
+    ),
+  ].join("");
+}
+
+function searchableText(facility) {
+  return [
+    facility.name,
+    facility.type,
+    facility.activity,
+    facility.address,
+    facility.city,
+    facility.zip,
+    facility.school,
+    facility.parentName,
+  ]
+    .join(" ")
+    .toLowerCase();
+}
+
+function applyFilters({ resetVisible = true } = {}) {
+  const keyword = elements.keyword.value.trim().toLowerCase();
+  const type = elements.type.value;
+  const activity = elements.activity.value;
+  const school = elements.school.value;
+  const radius = Number(elements.radius.value);
+
+  let results = state.facilities.map((facility) => {
+    const distance =
+      state.location && facility.latitude !== null && facility.longitude !== null
+        ? haversineMiles(
+            state.location.latitude,
+            state.location.longitude,
+            facility.latitude,
+            facility.longitude,
+          )
+        : null;
+    return { ...facility, distance };
+  });
+
+  results = results.filter((facility) => {
+    if (keyword && !searchableText(facility).includes(keyword)) return false;
+    if (type && facility.type !== type) return false;
+    if (activity && facility.activity !== activity) return false;
+    if (school && facility.school !== school) return false;
+    if (state.location && (facility.distance === null || facility.distance > radius)) return false;
+    return true;
+  });
+
+  if (elements.sort.value === "name") {
+    results.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (elements.sort.value === "distance" && state.location) {
+    results.sort((a, b) => (a.distance ?? Infinity) - (b.distance ?? Infinity));
+  } else if (elements.sort.value === "cost") {
+    results.sort((a, b) => minimumCost(a.cost) - minimumCost(b.cost) || a.name.localeCompare(b.name));
+  } else if (state.location) {
+    results.sort((a, b) => (a.distance ?? Infinity) - (b.distance ?? Infinity));
+  }
+
+  state.filtered = results;
+  if (resetVisible) state.visible = 12;
+  renderResults();
+  renderActiveFilters();
+  renderMap();
+}
+
+function renderResults() {
+  const visible = state.filtered.slice(0, state.visible);
+  elements.count.textContent = `${state.filtered.length} ${state.filtered.length === 1 ? "place" : "places"}`;
+  elements.grid.innerHTML = visible.map(cardMarkup).join("");
+  elements.grid.hidden = state.filtered.length === 0;
+  elements.empty.hidden = state.filtered.length !== 0;
+  elements.showMore.hidden = state.visible >= state.filtered.length || state.filtered.length === 0;
+}
+
+function cardMarkup(facility) {
+  const distance =
+    facility.distance === null
+      ? ""
+      : `<span class="card-distance">${facility.distance.toFixed(1)} mi</span>`;
+  const notice = facility.notice
+    ? `<p class="card-notice">${escapeHtml(facility.notice)}</p>`
+    : "";
+  return `
+    <article class="facility-card">
+      <div class="card-image" style="background-image:url('${imageFor(facility.type)}')">
+        <span class="card-type">${escapeHtml(facility.type)}</span>
+        ${distance}
+      </div>
+      <div class="card-body">
+        <h3>${escapeHtml(facility.name)}</h3>
+        <p class="card-address">${escapeHtml(addressFor(facility) || "Address not listed")}</p>
+        <div class="card-meta">
+          <span class="meta-pill">${escapeHtml(facility.activity || "Activity not listed")}</span>
+          <span class="meta-pill">${escapeHtml(shortCost(facility.cost))}</span>
+        </div>
+        ${notice}
+        <button class="facts-button" type="button" data-facility-index="${facility.index}">Quick facts</button>
+      </div>
+    </article>`;
+}
+
+function renderActiveFilters() {
+  const chips = [];
+  if (elements.keyword.value.trim()) chips.push(`Keyword: ${elements.keyword.value.trim()}`);
+  if (elements.type.value) chips.push(elements.type.value);
+  if (elements.activity.value) chips.push(`Activity: ${elements.activity.value}`);
+  if (elements.school.value) chips.push(`School: ${elements.school.value}`);
+  if (state.location) chips.push(`Within ${elements.radius.value} miles of ${state.location.label}`);
+  elements.filters.innerHTML = chips
+    .map((chip) => `<span class="filter-chip">${escapeHtml(chip)}</span>`)
+    .join("");
+}
+
+function renderMap() {
+  const points = state.filtered.filter(
+    (facility) => facility.latitude !== null && facility.longitude !== null,
+  );
+  if (!points.length) {
+    elements.map.innerHTML = "";
+    return;
+  }
+  const latitudes = points.map((point) => point.latitude);
+  const longitudes = points.map((point) => point.longitude);
+  const minLat = Math.min(...latitudes);
+  const maxLat = Math.max(...latitudes);
+  const minLon = Math.min(...longitudes);
+  const maxLon = Math.max(...longitudes);
+  const latSpan = maxLat - minLat || 1;
+  const lonSpan = maxLon - minLon || 1;
+
+  elements.map.innerHTML = "";
+  points.slice(0, 100).forEach((facility) => {
+    const dot = document.createElement("button");
+    dot.className = "map-dot";
+    dot.type = "button";
+    dot.title = facility.name;
+    dot.setAttribute("aria-label", `Open quick facts for ${facility.name}`);
+    dot.style.left = `${6 + ((facility.longitude - minLon) / lonSpan) * 88}%`;
+    dot.style.top = `${94 - ((facility.latitude - minLat) / latSpan) * 88}%`;
+    dot.addEventListener("click", () => openFacts(facility.index));
+    elements.map.append(dot);
+  });
+}
+
+function renderToday() {
+  const candidates = state.facilities.filter(
+    (facility) => !facility.notice && ["Park", "Trail", "Nature Center/Preserve"].includes(facility.type),
+  );
+  if (!candidates.length) return;
+  const dayIndex = Math.floor(Date.now() / 86400000);
+  const facility = candidates[(dayIndex + state.featuredIndex) % candidates.length];
+  elements.today.innerHTML = `
+    <div class="today-image" style="background-image:url('${imageFor(facility.type)}')"></div>
+    <div class="today-copy">
+      <span class="type-badge">${escapeHtml(facility.type)}</span>
+      <h3>${escapeHtml(facility.name)}</h3>
+      <p>${escapeHtml(addressFor(facility) || "Address not listed")} · ${escapeHtml(facility.activity || "Explore")}</p>
+      <div class="today-actions">
+        <button class="light-button" type="button" data-featured-index="${facility.index}">See quick facts</button>
+        <a class="text-link" href="#explore">Browse all places →</a>
+      </div>
+    </div>`;
+}
+
+function factItem(label, value) {
+  if (!value) return "";
+  return `<div class="fact-item"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`;
+}
+
+function openFacts(index) {
+  const facility = state.facilities.find((item) => item.index === Number(index));
+  if (!facility) return;
+  const officialLink = facility.website || PARKS_DIRECTORY;
+  const mapQuery = encodeURIComponent(addressFor(facility) || facility.name);
+  elements.dialogContent.innerHTML = `
+    <div class="dialog-image" style="background-image:url('${imageFor(facility.type)}')"></div>
+    <div class="dialog-body">
+      <span class="type-badge">${escapeHtml(facility.type)}</span>
+      <h2>${escapeHtml(facility.name)}</h2>
+      <p class="dialog-address">${escapeHtml(addressFor(facility) || "Address not listed")}</p>
+      <div class="fact-list">
+        ${factItem("Activity", facility.activity || "Not listed")}
+        ${factItem("Cost", facility.cost || "Cost not listed")}
+        ${factItem("Days", facility.days || "Not listed")}
+        ${factItem("Hours", shortHours(facility.hours))}
+        ${factItem("School area", facility.school || "Not listed")}
+        ${factItem("Located within", facility.parentName)}
+      </div>
+      ${facility.notice ? `<p class="dialog-notice">${escapeHtml(facility.notice)}</p>` : ""}
+      <div class="dialog-actions">
+        <a href="${escapeHtml(officialLink)}" target="_blank" rel="noreferrer">Official information ↗</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=${mapQuery}" target="_blank" rel="noreferrer">Get directions ↗</a>
+      </div>
+    </div>`;
+  elements.dialog.showModal();
+}
+
+function showToast(message) {
+  elements.toast.textContent = message;
+  elements.toast.classList.add("visible");
+  window.setTimeout(() => elements.toast.classList.remove("visible"), 2600);
+}
+
+function setLocationStatus(message, isError = false) {
+  elements.locationStatus.textContent = message;
+  elements.locationStatus.style.color = isError ? "#9f3514" : "";
+}
+
+function normalizeAddress(value) {
+  return value.toLowerCase().replace(/[^a-z0-9]/g, "");
+}
+
+async function resolveTypedLocation() {
+  const query = elements.location.value.trim();
+  if (!query) {
+    state.location = null;
+    setLocationStatus("");
+    applyFilters();
+    return true;
+  }
+
+  setLocationStatus("Finding that location…");
+  const zipMatch = query.match(/\b\d{5}\b/);
+  if (zipMatch) {
+    const matches = state.facilities.filter(
+      (facility) =>
+        facility.zip === zipMatch[0] && facility.latitude !== null && facility.longitude !== null,
+    );
+    if (matches.length) {
+      state.location = {
+        latitude: matches.reduce((sum, item) => sum + item.latitude, 0) / matches.length,
+        longitude: matches.reduce((sum, item) => sum + item.longitude, 0) / matches.length,
+        label: zipMatch[0],
+      };
+      setLocationStatus(`Showing places near ${zipMatch[0]}.`);
+      applyFilters();
+      return true;
+    }
+  }
+
+  const normalizedQuery = normalizeAddress(query);
+  const addressMatch = state.facilities.find((facility) => {
+    if (facility.latitude === null || facility.longitude === null) return false;
+    const candidate = normalizeAddress(`${facility.address}${facility.city}${facility.zip}`);
+    const facilityAddress = normalizeAddress(facility.address);
+    return candidate.includes(normalizedQuery) ||
+      (facilityAddress && normalizedQuery.includes(facilityAddress));
+  });
+  if (addressMatch) {
+    state.location = {
+      latitude: addressMatch.latitude,
+      longitude: addressMatch.longitude,
+      label: addressMatch.address,
+    };
+    setLocationStatus(`Showing places near ${addressMatch.address}.`);
+    applyFilters();
+    return true;
+  }
+
+  try {
+    const response = await fetch(
+      `https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=us&q=${encodeURIComponent(`${query}, Austin area, Texas`)}`,
+      { headers: { Accept: "application/json" } },
+    );
+    if (!response.ok) throw new Error("Location lookup failed");
+    const [result] = await response.json();
+    if (!result) throw new Error("No location found");
+    state.location = {
+      latitude: Number(result.lat),
+      longitude: Number(result.lon),
+      label: query,
+    };
+    setLocationStatus(`Showing places near ${query}.`);
+    applyFilters();
+    return true;
+  } catch {
+    state.location = null;
+    setLocationStatus("We couldn’t find that address. Try a five-digit ZIP code.", true);
+    applyFilters();
+    return false;
+  }
+}
+
+function useBrowserLocation() {
+  if (!navigator.geolocation) {
+    setLocationStatus("Location services are not available in this browser.", true);
+    return;
+  }
+  setLocationStatus("Requesting your location…");
+  navigator.geolocation.getCurrentPosition(
+    ({ coords }) => {
+      state.location = {
+        latitude: coords.latitude,
+        longitude: coords.longitude,
+        label: "your current location",
+      };
+      elements.location.value = "My location";
+      setLocationStatus("Showing nearby places.");
+      applyFilters();
+    },
+    () => setLocationStatus("Location access was not available. Try entering a ZIP code.", true),
+    { enableHighAccuracy: false, timeout: 10000 },
+  );
+}
+
+function clearFilters() {
+  elements.keyword.value = "";
+  elements.location.value = "";
+  elements.radius.value = "10";
+  elements.type.value = "";
+  elements.activity.value = "";
+  elements.school.value = "";
+  elements.sort.value = "recommended";
+  state.location = null;
+  setLocationStatus("");
+  applyFilters();
+}
+
+function selectType(type) {
+  elements.type.value = type;
+  applyFilters();
+  document.querySelector("#explore").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function bindEvents() {
+  elements.keyword.addEventListener("input", () => applyFilters());
+  [elements.type, elements.activity, elements.school, elements.radius].forEach((control) =>
+    control.addEventListener("change", () => applyFilters()),
+  );
+  elements.sort.addEventListener("change", () => {
+    if (elements.sort.value === "distance" && !state.location) {
+      elements.sort.value = "recommended";
+      showToast("Enter a ZIP code or address before sorting by distance.");
+      elements.location.focus();
+      return;
+    }
+    applyFilters();
+  });
+  elements.searchForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    await resolveTypedLocation();
+    document.querySelector("#explore").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+  elements.useLocation.addEventListener("click", useBrowserLocation);
+  elements.clear.addEventListener("click", clearFilters);
+  elements.emptyClear.addEventListener("click", clearFilters);
+  elements.showMore.addEventListener("click", () => {
+    state.visible += 12;
+    renderResults();
+  });
+  elements.surprise.addEventListener("click", () => {
+    state.featuredIndex += 1;
+    renderToday();
+  });
+  elements.dialogClose.addEventListener("click", () => elements.dialog.close());
+  elements.dialog.addEventListener("click", (event) => {
+    if (event.target === elements.dialog) elements.dialog.close();
+  });
+
+  document.addEventListener("click", (event) => {
+    const factsButton = event.target.closest("[data-facility-index]");
+    if (factsButton) openFacts(factsButton.dataset.facilityIndex);
+    const featuredButton = event.target.closest("[data-featured-index]");
+    if (featuredButton) openFacts(featuredButton.dataset.featuredIndex);
+    const menuButton = event.target.closest("[data-menu-type]");
+    if (menuButton) {
+      selectType(menuButton.dataset.menuType);
+      menuButton.closest("details")?.removeAttribute("open");
+    }
+    const challenge = event.target.closest("[data-challenge-type]");
+    if (challenge) selectType(challenge.dataset.challengeType);
+    const scrollButton = event.target.closest("[data-scroll-to]");
+    if (scrollButton) document.querySelector(`#${scrollButton.dataset.scrollTo}`)?.scrollIntoView({ behavior: "smooth" });
+    const comingSoon = event.target.closest("[data-coming-soon]");
+    if (comingSoon) showToast(`${comingSoon.dataset.comingSoon} will be added in a future version.`);
+  });
+}
+
+async function initialize() {
+  try {
+    const facilities = window.AMSC_FACILITIES;
+    if (!Array.isArray(facilities)) throw new Error("Facility data could not be loaded");
+    state.facilities = facilities.map((facility, index) => ({ ...facility, index }));
+    populateControls();
+    renderToday();
+    bindEvents();
+    applyFilters();
+  } catch (error) {
+    elements.count.textContent = "Facility data unavailable";
+    elements.grid.innerHTML = `<div class="empty-state"><h3>We couldn’t load the directory.</h3><p>${escapeHtml(error.message)}</p></div>`;
+    elements.showMore.hidden = true;
+  }
+}
+
+initialize();
+
+    </script>
+  </body>
+</html>
